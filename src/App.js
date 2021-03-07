@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
 import HomePage from "../src/pages/homepage/homepage.component.jsx"
-import { Route, Link } from "react-router-dom";
+import { Route, Link, Switch } from "react-router-dom";
 import ShopPage from './pages/shoppage/shop.component';
+import Header from './components/header-component/header.component';
 
 const Test = (props)=> {
   console.log(props)
@@ -31,10 +32,13 @@ const TestId = (props)=>{
 function App() {
   return (
     <div>
+      <Header />
+      <Switch>
       <Route exact path='/' component={HomePage}/>
       <Route exact path='/test' component={Test} />
       <Route exact path='/test/:testid' component={TestId} />
       <Route  exact path='/shop' component={ShopPage} />
+      </Switch>
   
 
 
