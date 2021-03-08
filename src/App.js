@@ -4,6 +4,7 @@ import HomePage from "../src/pages/homepage/homepage.component.jsx"
 import { Route, Link, Switch } from "react-router-dom";
 import ShopPage from './pages/shoppage/shop.component';
 import Header from './components/header-component/header.component';
+import SignInAndSignUp from './pages/signin-and-signup/signin-and-signup.component';
 
 const Test = (props)=> {
   console.log(props)
@@ -38,6 +39,7 @@ function App() {
       <Route exact path='/test' component={Test} />
       <Route exact path='/test/:testid' component={TestId} />
       <Route  exact path='/shop' component={ShopPage} />
+      <Route exact path="/sign" component={SignInAndSignUp} />
       </Switch>
   
 
