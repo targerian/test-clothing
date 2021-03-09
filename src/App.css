@@ -6,3 +6,6 @@ a, a:visited, a:hover {
     text-decoration: none;
     color: black;
 }
+* {
+    box-sizing: border-box;
+}
