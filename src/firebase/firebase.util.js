@@ -1,5 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
+import dotenv from 'dotenv'
+dotenv.config()
 
 firebase.initializeApp({
   apiKey: "AIzaSyABNuqsUmCR-9W2S6ql0TX3NzVTNwrMSl0",
@@ -13,11 +15,13 @@ firebase.initializeApp({
 
 
 
-export const auth = firebase.auth() ;
-// export const firestore = firebase.firestore();
-
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: 'select_account' });
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
-
+export const auth = firebase.auth();
+const googleProvider = new firebase.auth.GoogleAuthProvider()
+export const signInWithGoogle = () => {
+  auth.signInWithRedirect (googleProvider).then((res) => {
+    console.log(res.user)
+  }).catch((error) => {
+    console.log(error.message)
+  })
+}
 export default firebase;
