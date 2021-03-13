@@ -1,7 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/auth";
-import dotenv from 'dotenv'
-dotenv.config()
+import "firebase/firestore";
 
 firebase.initializeApp({
   apiKey: "AIzaSyABNuqsUmCR-9W2S6ql0TX3NzVTNwrMSl0",
@@ -10,18 +9,43 @@ firebase.initializeApp({
   storageBucket: "ali-s-clothing.appspot.com",
   messagingSenderId: "624661156895",
   appId: "1:624661156895:web:0d76534214d772d8b9f12a",
-  measurementId: "G-Q1FQ0QCT4B"
+  measurementId: "G-Q1FQ0QCT4B",
 });
 
-
-
-export const auth = firebase.auth();
-const googleProvider = new firebase.auth.GoogleAuthProvider()
-export const signInWithGoogle = () => {
-  auth.signInWithRedirect (googleProvider).then((res) => {
-    console.log(res.user)
-  }).catch((error) => {
-    console.log(error.message)
-  })
+export const CreateUserProfileDocument = async (userAuth, additionalData) =>  {
+  if (!userAuth) return;
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
+  const snapshot = await userRef.get();
+  if(!snapshot.exist){
+    const { displayName, email} = userAuth;
+    const createdAt = new Date();
+    try{
+        await userRef.set({
+          displayName,
+          email,
+          createdAt,
+          ...additionalData
+        })
+    }
+    catch (err){
+        console.log("error creating user", err.message);
+    }
+  }
+  return userRef;
 }
+
+export const firestore = firebase.firestore();
+export const auth = firebase.auth();
+const googleProvider = new firebase.auth.GoogleAuthProvider();
+export const signInWithGoogle = () => {
+  auth
+    .signInWithRedirect(googleProvider)
+    .then((res) => {
+      console.log(res.user);
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
+};
 export default firebase;
+
