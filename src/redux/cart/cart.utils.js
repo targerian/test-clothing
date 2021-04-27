@@ -23,6 +23,7 @@ export const removeItemFromCart = (cartItems,cartItemToRemove) =>{
   const excitingCartItem = cartItems.find(cartItem => cartItem.id === cartItemToRemove.id);
   //this will not return boolean, this will return the first "cartItem" that its id is equal to cart to remove id.
 
+  // eslint-disable-next-line eqeqeq
   if (excitingCartItem.quantity == 1 ){
     return cartItems.filter( cartItem => cartItem.id !== cartItemToRemove.id)
   }

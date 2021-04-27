@@ -6,13 +6,19 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 
 import { Provider } from "react-redux";
-import store from "./redux/store"
+import { store, persistor } from "./redux/store";
+
+import { PersistGate } from "redux-persist/integration/react";
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={store}> 
     <BrowserRouter>
-      <App />
+      <PersistGate persistor={persistor}> 
+        <App />
+      </PersistGate>
     </BrowserRouter>
-  </Provider> ,
+  </Provider>,
   document.getElementById("root")
 );
+//this persistGate wrapps app for the persist session storage. we pass persistor created in the store.js as a prop there
+  //this provider wraps the app for redux state
