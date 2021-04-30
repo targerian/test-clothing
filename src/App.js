@@ -10,7 +10,7 @@ import { setCurrentUser } from "./redux/user/user.action";
 import { connect } from "react-redux";
 import { selectCurrentUser } from "./redux/user/user.selectors";
 import CheckoutPage from "./pages/checkoutpage/checkoutpage.component";
-
+import CollectionPage from "./pages/collection/collection.component";
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -42,11 +42,12 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/shop" component={ShopPage} />
+          <Route path="/shop/:categoryId" component={CollectionPage} />
           <Route
             exact
             path="/sign"
             render={() =>
-              this.props.currentUser ? (<Redirect to="/" />) : (<SignInAndSignUp />)
+              this.props.currentUser ? <Redirect to="/" /> : <SignInAndSignUp />
             }
           />
           <Route exact path="/checkout" component={CheckoutPage} />
@@ -57,7 +58,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  currentUser: selectCurrentUser(state)
+  currentUser: selectCurrentUser(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
