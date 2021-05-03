@@ -1,16 +1,20 @@
 import React from "react";
-import "./App.css";
-import HomePage from "../src/pages/homepage/homepage.component.jsx";
+
 import { Route, Switch, Redirect } from "react-router-dom";
-import ShopPage from "./pages/shoppage/shop.component";
-import Header from "./components/header-component/header.component";
-import SignInAndSignUp from "./pages/signin-and-signup/signin-and-signup.component";
-import { auth, CreateUserProfileDocument } from "./firebase/firebase.util";
-import { setCurrentUser } from "./redux/user/user.action";
+
 import { connect } from "react-redux";
-import { selectCurrentUser } from "./redux/user/user.selectors";
+
+import HomePage from "../src/pages/homepage/homepage.component.jsx";
+
+import "./App.css";
+
+import { auth, CreateUserProfileDocument } from "./firebase/firebase.util";
+import Header from "./components/header-component/header.component";
 import CheckoutPage from "./pages/checkoutpage/checkoutpage.component";
-import CollectionPage from "./pages/collection/collection.component";
+import ShopPage from "./pages/shoppage/shop.component";
+import SignInAndSignUp from "./pages/signin-and-signup/signin-and-signup.component";
+import { setCurrentUser } from "./redux/user/user.action";
+import { selectCurrentUser } from "./redux/user/user.selectors";
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -40,17 +44,15 @@ class App extends React.Component {
       <div>
         <Header />
         <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/shop" component={ShopPage} />
-          <Route path="/shop/:categoryId" component={CollectionPage} />
+          <Route path="/shop" component={ShopPage} />
           <Route
-            exact
             path="/sign"
             render={() =>
               this.props.currentUser ? <Redirect to="/" /> : <SignInAndSignUp />
             }
           />
-          <Route exact path="/checkout" component={CheckoutPage} />
+          <Route path="/checkout" component={CheckoutPage} />
+          <Route path="/" component={HomePage} />
         </Switch>
       </div>
     );
