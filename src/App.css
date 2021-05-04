@@ -1,6 +1,9 @@
 body{
     font-family: 'Open Sans Condensed', sans-serif;
     padding : 20px 60px;
+    background-color: #ffffff;
+background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 a, a:visited, a:hover {
     text-decoration: none;

@@ -1,10 +1,12 @@
 import React from "react";
 import CollectionItem from "../collection-item.component/collection-item.component";
-import "./peview-collection.styles.scss"
+import "./peview-collection.styles.scss";
+import {withRouter } from "react-router-dom";
 
-const PreviewCollection = ({ title, items }) => (
-    <div className="collection-preview">
-        <h1 className="title">{title.toUpperCase()}</h1>
+const PreviewCollection = ({ title, items,linkUrl, match,history }) => {
+    console.log(match)
+    return (<div className="collection-preview">
+        <h1 className="title"onClick={()=>history.push(`${match.path}/${title.toLowerCase()}`)} >{title.toUpperCase()}</h1>
         <div className="preview">
         {
             items.filter((item,index)=> index < 4).map((item)=> (
@@ -15,6 +17,6 @@ const PreviewCollection = ({ title, items }) => (
         }
 
         </div>
-    </div>
-)
-export default PreviewCollection;
+    </div>)
+}
+export default withRouter(PreviewCollection);
