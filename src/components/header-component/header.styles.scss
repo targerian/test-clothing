@@ -24,4 +24,17 @@
       }
     }
   }
+  @media only screen and (max-width: 768px) {
+    .header{
+      height: auto;
+    }
+    .logo-container{
+      margin-top:18%;
+      margin-bottom: 18%;
+      margin-left: 7%;
+    }
+    .options{
+      flex-direction: column;
+    }
+  }
   

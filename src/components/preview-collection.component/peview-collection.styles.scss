@@ -15,4 +15,18 @@
       justify-content: space-between;
     }
   }
+  @media only screen and (max-width: 768px){
+    .collection-preview{
+      .title{
+        text-align: center;
+          
+      }
+      .preview{
+        flex-direction: column;
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap:10px;
+      }
+    }
+  }
   

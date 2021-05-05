@@ -4,6 +4,11 @@
     align-items: center;
     padding: 20px 80px;
   }
+  @media only screen and (max-width: 768px) {
+    .homepage{
+      padding: 2% 4%;
+    }
+  }
   
   
   

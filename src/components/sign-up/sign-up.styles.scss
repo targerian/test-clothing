@@ -6,3 +6,11 @@
         margin: 10px 0;
     }
 }
+@media only screen and (max-width:768px){
+    .sign-up{
+        margin-top: 20%;
+        button{
+            margin:auto;
+        }
+    }
+}
