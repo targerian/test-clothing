@@ -19,8 +19,13 @@
 }
 @media only screen and (max-width: 768px){
   .collection-page{
+    align-items: center;
+    .title{
+      margin: 15px auto;
+    }
   .items{
       display: grid;
       grid-template-columns: 1fr 1fr;
+      grid-gap:15px;
   }}
 }

@@ -49,10 +49,27 @@
 }
 @media only screen and (max-width: 768px){
   .collection-item{
-    width: 44vw;
+    width: 40vw;
     margin: auto;
+    height:400px;
+
+    .custom-button{
+      top:300px;
+      display: block;
+      opacity: 0.9;
+      min-width: unset;
+    }
+
+    
   }
   .image{
     margin: 8%;
   }
+  &:hover{
+    .image{
+      opacity: unset;
+    }
+    .custom-button{
+      display: flex;
+    }}
 }
