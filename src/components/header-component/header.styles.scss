@@ -27,14 +27,17 @@
   @media only screen and (max-width: 768px) {
     .header{
       height: auto;
-    }
-    .logo-container{
-      margin-top:18%;
-      margin-bottom: 18%;
-      margin-left: 7%;
-    }
-    .options{
-      flex-direction: column;
+      margin-bottom: 5px;
+      .options{
+        width: 80%;
+        .option{
+          padding: 22px 15px;
+        }
+      }
+      .logo-container{
+        width:50px;
+        padding:12px;
+      }
     }
   }
   
