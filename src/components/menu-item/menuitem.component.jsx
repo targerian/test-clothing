@@ -13,7 +13,7 @@ const MenuItem = (props) => (
     />
     <div className="content">
       <h1 className="title">{props.title.toUpperCase()}</h1>
-      <span className="subtitle">subtitle1</span>
+      <span className="subtitle">SHOP NOW</span>
     </div>
   </div>
 );
