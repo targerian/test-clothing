@@ -17,12 +17,13 @@ import { setCurrentUser } from "./redux/user/user.action";
 import { selectCurrentUser } from "./redux/user/user.selectors";
 import Footer from "./components/footer/footer.component.jsx";
 import ContactPage from "./pages/contact/contact.component.jsx";
-
+import { createStructuredSelector } from "reselect";
 class App extends React.Component {
   unsubscribeFromAuth = null;
 
-  componentDidMount(props) {
+  componentDidMount() {
     const { setCurrentUser } = this.props;
+
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       const userRef = await CreateUserProfileDocument(userAuth);
       if (userAuth) {
@@ -32,9 +33,8 @@ class App extends React.Component {
             ...snapshot.data(),
           });
         });
-      } else {
-        setCurrentUser(userAuth);
       }
+      setCurrentUser(userAuth);
     });
   }
   componentWillUnmount() {
@@ -46,7 +46,7 @@ class App extends React.Component {
       <div>
         <Header />
         <Switch>
-        <Route path="/contact" component={ContactPage} />
+          <Route path="/contact" component={ContactPage} />
           <Route path="/shop" component={ShopPage} />
           <Route
             path="/sign"
@@ -57,14 +57,14 @@ class App extends React.Component {
           <Route path="/checkout" component={CheckoutPage} />
           <Route path="/" component={HomePage} />
         </Switch>
-        <Footer/>
+        <Footer />
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  currentUser: selectCurrentUser(state),
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
 });
 
 const mapDispatchToProps = (dispatch) => ({

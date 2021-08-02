@@ -3,8 +3,6 @@ import CollectionItem from "../../components/collection-item.component/collectio
 import "./collection.styles.scss";
 import { connect } from "react-redux";
 import { selectCollection } from "../../redux/shop/shop.selector";
-import { AddItem } from "../../redux/cart/cart.action";
-
 
 const CollectionPage = ({ match, collection}) => {
     const { title, items } = collection;

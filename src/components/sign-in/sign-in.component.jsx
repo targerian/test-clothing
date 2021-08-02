@@ -14,25 +14,26 @@ class SignIn extends React.Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    const{email, password} = this.state;
-    try{
-      await auth.signInWithEmailAndPassword(email,password);
-      this.setState({ email: "", password: "" }); 
+    const { email, password } = this.state;
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      this.setState({ email: "", password: "" });
+    } catch (err) {
+      alert("Error in signing in, name and password doesn't match");
+      console.log(err);
     }
-    catch(err){
-      alert("Error in signing in, name and password doesn't match")
-      console.log(err)
-    }
-    
   };
   handleChange = (e) => {
     const { value, name } = e.target;
     this.setState({ [name]: value });
   };
-  handleSignWithGoogle =async ()=> {
-    try{await signInWithGoogle()}
-    catch (ex) {console.log(ex)}
-  }
+  handleSignWithGoogle = async () => {
+    try {
+      await signInWithGoogle();
+    } catch (ex) {
+      console.log(ex);
+    }
+  };
   render() {
     return (
       <div className="sign-in">
@@ -56,8 +57,18 @@ class SignIn extends React.Component {
             handleChange={this.handleChange}
           />
           <div className="buttons">
-          <CustomButton type="submit" value="Submit Form"> Sign in </CustomButton>
-          <CustomButton type="button" onClick={signInWithGoogle} isGoogleSignIn> Google Sign in</CustomButton>
+            <CustomButton type="submit" value="Submit Form">
+              {" "}
+              Sign in{" "}
+            </CustomButton>
+            <CustomButton
+              type="button"
+              onClick={signInWithGoogle}
+              isGoogleSignIn
+            >
+              {" "}
+              Google Sign in
+            </CustomButton>
           </div>
         </form>
       </div>
